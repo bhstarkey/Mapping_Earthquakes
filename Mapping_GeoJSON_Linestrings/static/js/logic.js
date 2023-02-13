@@ -43,3 +43,23 @@ d3.json(airportData).then(function(data) {
     }
 }).addTo(map);
 });
+
+// Add popups
+// d3.json(airportData, {
+//   onEachFeature: function (feature, layer) {
+//     layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3> Airport name: " + feature.properties.name + "</h3>");
+//   }
+// }).addTo(map);
+
+
+
+
+// // Grabbing our GeoJSON data.
+// L.geoJSON(sanFranAirport, {
+//   // We turn each feature into a marker on the map.
+//   onEachFeature: function(feature, layer) {
+//     console.log(layer)
+//     layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3> Airport name: " + feature.properties.name + "</h3>");
+//   }
+
+// }).addTo(map)
