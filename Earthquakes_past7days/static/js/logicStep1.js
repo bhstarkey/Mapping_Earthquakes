@@ -15,13 +15,13 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 // Create a base layer that holds both maps.
 let baseMaps = {
   "Streets": streets,
-  "Satellite Streets": satellite
+  "Satellite": satellite
 };
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
-  center: [43.7, -79.3],
-  zoom: 11,
+  center: [39.5, -98.5],
+  zoom: 3,
   layers: [streets]
 })
 
@@ -29,24 +29,11 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing GeoJSON URL
-let torontoNeighborhoods = "https://raw.githubusercontent.com/bhstarkey/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/static/data/torontoNeighborhoods.json"
+let earthquakes = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
 // Grabbing GeoJSON data
-d3.json(torontoNeighborhoods).then(function(data) {
-  console.log(data);
+d3.json(earthquakes).then(function(data) {
   // Creating GeoJSON layer with data
-  L.geoJSON(data,{
-    style: myStyle,
-    onEachFeature: function(feature, layer){
-      layer.bindPopup("<h3> Neighborhood: " + feature.properties.AREA_NAME + "</h3>");
-    }
-  }).addTo(map);
+  L.geoJSON(data).addTo(map);
 
 });
-
-// Create a style for the lines.
-let myStyle = {
-  color: "blue",
-  weight: 1,
-  fillColor: "yellow"
-}
